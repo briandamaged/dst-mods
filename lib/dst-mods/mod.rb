@@ -17,8 +17,17 @@ module DST::Mods
       info_path = File.join(path, "modinfo.lua")
       self.new(
         path: File.absolute_path(path),
-        info: ModInfo.load(info_path)
+        info: ModInfo.load!(info_path)
       )
+    end
+
+
+    # For convenience, we'll define a shortcut method for
+    # each of the ModInfo::Keys.
+    ModInfo::Keys.each do |k|
+      define_method k do
+        info[k]
+      end
     end
 
   end

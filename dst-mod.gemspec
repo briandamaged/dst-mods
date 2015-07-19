@@ -11,5 +11,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.homepage    = "https://github.com/briandamaged/dst-mods"
+
+  s.add_dependency 'recsym', '~> 1.0'
 end
 

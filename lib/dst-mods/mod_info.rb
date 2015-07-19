@@ -1,11 +1,14 @@
 require_relative '__module__'
 
+require 'recsym'
 require 'ruby-lua'
 
 module DST::Mods
 
   module ModInfo
-    # TODO: Figure out a better way to do this
+
+    # The variables have a special meaning when used inside
+    # of a modinfo.lua file.  So, let's grab them!
     Keys = [
       :name, :description, :author, :version,
       :forumthread, :api_version, :priority,
@@ -15,24 +18,18 @@ module DST::Mods
     ]
 
 
-    class << self
+    # Loads the specified modinfo.lua file and returns
+    # the keys that we care about.
+    def self.load!(path)
+      lua = Language::Lua.new
+      lua.load(path)
 
-      def extract_lua_vars(lua)
-        retval = {}
-        Keys.each do |k|
-          retval[k] = lua.var(true, k.to_s)
-        end
-        retval
+      retval = {}
+      Keys.each do |k|
+        retval[k] = lua.var(true, k.to_s)
       end
 
-
-      def load(path)
-        lua = Language::Lua.new
-        lua.load(path)
-        extract_lua_vars(lua)
-      end
-
-
+      RecSym.this(retval)
     end
 
 
