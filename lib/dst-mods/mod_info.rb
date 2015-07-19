@@ -29,6 +29,10 @@ module DST::Mods
         retval[k] = lua.var(true, k.to_s)
       end
 
+      # Convenience: this way, downstream code won't
+      # need to check for nil.
+      retval[:configuration_options] ||= {}
+
       RecSym.this(retval)
     end
 
