@@ -12,8 +12,20 @@ module DST::Mods
     Keys = [
       :name, :description, :author, :version,
       :forumthread, :api_version, :priority,
-      :dst_compatible, :all_clients_require_mod,
-      :client_only_mod, :icon_atlas, :icon,
+
+      :dst_compatible,
+      :dont_starve_compatible,
+      :reign_of_giants_compatible,
+
+
+      :all_clients_require_mod,
+
+      :client_only_mod,
+
+
+      :icon_atlas, :icon,
+
+      :server_filter_tags,
       :configuration_options
     ]
 
